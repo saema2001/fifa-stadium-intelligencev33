@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Design tokens — same system as the standalone prototype:
+   deep-navy "night stadium" base, turf-green primary accent,
+   amber/cyan/violet/danger for agent + status coding.
+   Toggled via html[data-theme], not prefers-color-scheme, so
+   the in-app theme switch has full control.
+   ============================================================ */
+:root {
+  --bg: #0a0e14;
+  --bg-2: #0d1220;
+  --panel: #121826;
+  --panel-2: #161d2e;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+
+  --turf: #2de370;
+  --turf-dim: rgba(45, 227, 112, 0.15);
+  --amber: #ffb627;
+  --amber-dim: rgba(255, 182, 39, 0.15);
+  --cyan: #4cc9f0;
+  --cyan-dim: rgba(76, 201, 240, 0.15);
+  --danger: #ff5c5c;
+  --danger-dim: rgba(255, 92, 92, 0.15);
+  --violet: #b98cff;
+  --violet-dim: rgba(185, 140, 255, 0.15);
+
+  --text: #e8ecf1;
+  --text-dim: #8a93a6;
+  --text-faint: #5a6376;
+  --focus-ring: #4cc9f0;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+html[data-theme="light"] {
+  --bg: #f0f2f6;
+  --bg-2: #e7eaf0;
+  --panel: #ffffff;
+  --panel-2: #f6f7fa;
+  --border: rgba(10, 14, 20, 0.09);
+  --border-strong: rgba(10, 14, 20, 0.16);
+  --turf-dim: rgba(20, 130, 70, 0.14);
+  --amber-dim: rgba(170, 110, 0, 0.14);
+  --cyan-dim: rgba(10, 110, 165, 0.14);
+  --danger-dim: rgba(190, 40, 40, 0.14);
+  --violet-dim: rgba(110, 70, 200, 0.14);
+  --text: #161b26;
+  --text-dim: #4b5468;
+  --text-faint: #737c90;
+  --focus-ring: #0a6ea5;
+}
+
+/* Expose the same tokens as Tailwind utilities: bg-turf, text-cyan-dim, etc. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-turf: var(--turf);
+  --color-turf-dim: var(--turf-dim);
+  --color-amber: var(--amber);
+  --color-amber-dim: var(--amber-dim);
+  --color-cyan: var(--cyan);
+  --color-cyan-dim: var(--cyan-dim);
+  --color-danger: var(--danger);
+  --color-danger-dim: var(--danger-dim);
+  --color-violet: var(--violet);
+  --color-violet-dim: var(--violet-dim);
+
+  --color-text: var(--text);
+  --color-text-dim: var(--text-dim);
+  --color-text-faint: var(--text-faint);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+body {
+  background:
+    radial-gradient(ellipse 1200px 600px at 15% -10%, var(--turf-dim), transparent 60%),
+    radial-gradient(ellipse 900px 500px at 100% 0%, var(--cyan-dim), transparent 55%), var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 6px;
+}

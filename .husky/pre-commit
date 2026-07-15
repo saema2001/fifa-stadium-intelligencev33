@@ -1,0 +1,4 @@
+npx tsc --noEmit
+npx eslint .
+npx prettier --check "src/**/*.{ts,tsx,css}" "*.{ts,mjs,json}"
+npx vitest run
